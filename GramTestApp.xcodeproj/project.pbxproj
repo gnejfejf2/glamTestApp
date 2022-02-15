@@ -13,7 +13,7 @@
 		E07F7B6127BA369D00D7795A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B6027BA369D00D7795A /* SceneDelegate.swift */; };
 		E07F7B6827BA36A200D7795A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E07F7B6727BA36A200D7795A /* Assets.xcassets */; };
 		E07F7B6B27BA36A200D7795A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E07F7B6927BA36A200D7795A /* LaunchScreen.storyboard */; };
-		E07F7B7627BA36A200D7795A /* GramTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B7527BA36A200D7795A /* GramTestAppTests.swift */; };
+		E07F7B7627BA36A200D7795A /* GramAppDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B7527BA36A200D7795A /* GramAppDelegateTest.swift */; };
 		E07F7B9027BA377900D7795A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B8F27BA377900D7795A /* AppCoordinator.swift */; };
 		E07F7B9327BA37AD00D7795A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B9227BA37AD00D7795A /* Router.swift */; };
 		E07F7B9627BA386300D7795A /* GramAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B9527BA386300D7795A /* GramAPI.swift */; };
@@ -38,6 +38,21 @@
 		E07F7BC627BA7A6200D7795A /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BC527BA7A6200D7795A /* TalkViewController.swift */; };
 		E07F7BC827BA7A6B00D7795A /* TalkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BC727BA7A6B00D7795A /* TalkViewModel.swift */; };
 		E07F7BCA27BA7A7600D7795A /* TalkViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BC927BA7A7600D7795A /* TalkViewCoordinator.swift */; };
+		E07F7BCD27BB1B9300D7795A /* HomeTapBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BCC27BB1B9300D7795A /* HomeTapBarCollectionViewCell.swift */; };
+		E07F7BCF27BB22A200D7795A /* MainPageTabBarEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BCE27BB22A200D7795A /* MainPageTabBarEnum.swift */; };
+		E07F7BD227BB281B00D7795A /* CGFloat_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BD127BB281B00D7795A /* CGFloat_Extension.swift */; };
+		E07F7BD427BB288E00D7795A /* Int_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BD327BB288E00D7795A /* Int_Extension.swift */; };
+		E07F7BD627BB316B00D7795A /* HomeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BD527BB316B00D7795A /* HomeMainViewController.swift */; };
+		E07F7BD927BB33D900D7795A /* IntroductionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BD827BB33D900D7795A /* IntroductionCollectionViewCell.swift */; };
+		E07F7BDB27BB340600D7795A /* CellSettingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BDA27BB340600D7795A /* CellSettingProtocol.swift */; };
+		E07F7BDE27BB3A0B00D7795A /* Introduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BDD27BB3A0B00D7795A /* Introduction.swift */; };
+		E07F7BEB27BB3CB400D7795A /* IntroductionResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BEA27BB3CB400D7795A /* IntroductionResModel.swift */; };
+		E07F7BED27BB3CF800D7795A /* ProfileResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BEC27BB3CF800D7795A /* ProfileResModel.swift */; };
+		E07F7BEF27BB3D0400D7795A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BEE27BB3D0400D7795A /* Profile.swift */; };
+		E07F7BF327BB87E500D7795A /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BF227BB87E500D7795A /* BasePaddingLabel.swift */; };
+		E07F7BF527BB885B00D7795A /* MainIntroduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BF427BB885B00D7795A /* MainIntroduction.swift */; };
+		E07F7BF827BB88AD00D7795A /* MainIntroductionType_Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BF727BB88AD00D7795A /* MainIntroductionType_Enum.swift */; };
+		E07F7C0127BB92C900D7795A /* Json.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E07F7C0027BB92C900D7795A /* Json.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +79,7 @@
 		E07F7B6A27BA36A200D7795A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E07F7B6C27BA36A200D7795A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E07F7B7127BA36A200D7795A /* GramTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GramTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E07F7B7527BA36A200D7795A /* GramTestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GramTestAppTests.swift; sourceTree = "<group>"; };
+		E07F7B7527BA36A200D7795A /* GramAppDelegateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GramAppDelegateTest.swift; sourceTree = "<group>"; };
 		E07F7B8F27BA377900D7795A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E07F7B9227BA37AD00D7795A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E07F7B9527BA386300D7795A /* GramAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GramAPI.swift; sourceTree = "<group>"; };
@@ -89,6 +104,21 @@
 		E07F7BC527BA7A6200D7795A /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		E07F7BC727BA7A6B00D7795A /* TalkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewModel.swift; sourceTree = "<group>"; };
 		E07F7BC927BA7A7600D7795A /* TalkViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewCoordinator.swift; sourceTree = "<group>"; };
+		E07F7BCC27BB1B9300D7795A /* HomeTapBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTapBarCollectionViewCell.swift; sourceTree = "<group>"; };
+		E07F7BCE27BB22A200D7795A /* MainPageTabBarEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageTabBarEnum.swift; sourceTree = "<group>"; };
+		E07F7BD127BB281B00D7795A /* CGFloat_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat_Extension.swift; sourceTree = "<group>"; };
+		E07F7BD327BB288E00D7795A /* Int_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int_Extension.swift; sourceTree = "<group>"; };
+		E07F7BD527BB316B00D7795A /* HomeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainViewController.swift; sourceTree = "<group>"; };
+		E07F7BD827BB33D900D7795A /* IntroductionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionCollectionViewCell.swift; sourceTree = "<group>"; };
+		E07F7BDA27BB340600D7795A /* CellSettingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSettingProtocol.swift; sourceTree = "<group>"; };
+		E07F7BDD27BB3A0B00D7795A /* Introduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Introduction.swift; sourceTree = "<group>"; };
+		E07F7BEA27BB3CB400D7795A /* IntroductionResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionResModel.swift; sourceTree = "<group>"; };
+		E07F7BEC27BB3CF800D7795A /* ProfileResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResModel.swift; sourceTree = "<group>"; };
+		E07F7BEE27BB3D0400D7795A /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		E07F7BF227BB87E500D7795A /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
+		E07F7BF427BB885B00D7795A /* MainIntroduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIntroduction.swift; sourceTree = "<group>"; };
+		E07F7BF727BB88AD00D7795A /* MainIntroductionType_Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIntroductionType_Enum.swift; sourceTree = "<group>"; };
+		E07F7C0027BB92C900D7795A /* Json.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Json.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +184,7 @@
 		E07F7B5D27BA369D00D7795A /* GramTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				E07F7BDC27BB39F800D7795A /* Model */,
 				E07F7BAC27BA76AB00D7795A /* Design */,
 				E07F7B9E27BA75ED00D7795A /* Views */,
 				E07F7B8E27BA376500D7795A /* AppSupportFile */,
@@ -167,7 +198,8 @@
 		E07F7B7427BA36A200D7795A /* GramTestAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				E07F7B7527BA36A200D7795A /* GramTestAppTests.swift */,
+				E07F7C0027BB92C900D7795A /* Json.bundle */,
+				E07F7B7527BA36A200D7795A /* GramAppDelegateTest.swift */,
 			);
 			path = GramTestAppTests;
 			sourceTree = "<group>";
@@ -175,6 +207,7 @@
 		E07F7B8E27BA376500D7795A /* AppSupportFile */ = {
 			isa = PBXGroup;
 			children = (
+				E07F7BD027BB280900D7795A /* Extension */,
 				E07F7BA727BA767400D7795A /* Protocol */,
 				E07F7B9F27BA75F200D7795A /* AppDelegate */,
 				E07F7B9927BA74B800D7795A /* Enum */,
@@ -207,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				E07F7B9A27BA74C800D7795A /* TabBarPage.swift */,
+				E07F7BCE27BB22A200D7795A /* MainPageTabBarEnum.swift */,
+				E07F7BF727BB88AD00D7795A /* MainIntroductionType_Enum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -235,6 +270,8 @@
 		E07F7BA027BA760F00D7795A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E07F7BD727BB31C600D7795A /* SubViewController */,
+				E07F7BCB27BB1B7200D7795A /* Cell */,
 				E07F7BA127BA761D00D7795A /* HomeViewController.swift */,
 				E07F7BA327BA763400D7795A /* HomeViewModel.swift */,
 				E07F7BA527BA763E00D7795A /* HomeViewCoordinator.swift */,
@@ -247,6 +284,7 @@
 			children = (
 				E07F7BA827BA768000D7795A /* ViewSettingProtocol.swift */,
 				E07F7BAD27BA791700D7795A /* ViewModelProtocol.swift */,
+				E07F7BDA27BB340600D7795A /* CellSettingProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -254,6 +292,7 @@
 		E07F7BAC27BA76AB00D7795A /* Design */ = {
 			isa = PBXGroup;
 			children = (
+				E07F7BF127BB87D500D7795A /* Components */,
 				E07F7BAA27BA76A600D7795A /* DesignColor.swift */,
 			);
 			path = Design;
@@ -297,6 +336,76 @@
 				E07F7BC327BA7A5600D7795A /* MyViewCoordinator.swift */,
 			);
 			path = My;
+			sourceTree = "<group>";
+		};
+		E07F7BCB27BB1B7200D7795A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7BCC27BB1B9300D7795A /* HomeTapBarCollectionViewCell.swift */,
+				E07F7BD827BB33D900D7795A /* IntroductionCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E07F7BD027BB280900D7795A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7BD127BB281B00D7795A /* CGFloat_Extension.swift */,
+				E07F7BD327BB288E00D7795A /* Int_Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E07F7BD727BB31C600D7795A /* SubViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7BD527BB316B00D7795A /* HomeMainViewController.swift */,
+			);
+			path = SubViewController;
+			sourceTree = "<group>";
+		};
+		E07F7BDC27BB39F800D7795A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7BF627BB886200D7795A /* TypeModel */,
+				E07F7BDD27BB3A0B00D7795A /* Introduction.swift */,
+				E07F7BEE27BB3D0400D7795A /* Profile.swift */,
+				E07F7BE027BB3A1500D7795A /* ReqModel */,
+				E07F7BDF27BB3A0F00D7795A /* ResModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E07F7BDF27BB3A0F00D7795A /* ResModel */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7BEA27BB3CB400D7795A /* IntroductionResModel.swift */,
+				E07F7BEC27BB3CF800D7795A /* ProfileResModel.swift */,
+			);
+			path = ResModel;
+			sourceTree = "<group>";
+		};
+		E07F7BE027BB3A1500D7795A /* ReqModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ReqModel;
+			sourceTree = "<group>";
+		};
+		E07F7BF127BB87D500D7795A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7BF227BB87E500D7795A /* BasePaddingLabel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E07F7BF627BB886200D7795A /* TypeModel */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7BF427BB885B00D7795A /* MainIntroduction.swift */,
+			);
+			path = TypeModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E07F7B6B27BA36A200D7795A /* LaunchScreen.storyboard in Resources */,
+				E07F7C0127BB92C900D7795A /* Json.bundle in Resources */,
 				E07F7B6827BA36A200D7795A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,29 +594,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E07F7BED27BB3CF800D7795A /* ProfileResModel.swift in Sources */,
 				E07F7BB327BA79CC00D7795A /* PlayViewModel.swift in Sources */,
+				E07F7BD227BB281B00D7795A /* CGFloat_Extension.swift in Sources */,
 				E07F7B9827BA749400D7795A /* TabBarMasterCoordinator.swift in Sources */,
 				E07F7BB127BA79C300D7795A /* PlayViewController.swift in Sources */,
 				E07F7B9027BA377900D7795A /* AppCoordinator.swift in Sources */,
 				E07F7BBA27BA7A1200D7795A /* FavoriteViewController.swift in Sources */,
+				E07F7BF827BB88AD00D7795A /* MainIntroductionType_Enum.swift in Sources */,
 				E07F7BB527BA79D900D7795A /* PlayViewCoordinator.swift in Sources */,
 				E07F7BAB27BA76A600D7795A /* DesignColor.swift in Sources */,
+				E07F7BD927BB33D900D7795A /* IntroductionCollectionViewCell.swift in Sources */,
 				E07F7BCA27BA7A7600D7795A /* TalkViewCoordinator.swift in Sources */,
+				E07F7BF327BB87E500D7795A /* BasePaddingLabel.swift in Sources */,
 				E07F7BBC27BA7A2800D7795A /* FavoriteViewModel.swift in Sources */,
 				E07F7B9D27BA75BC00D7795A /* TabViewCoordinator.swift in Sources */,
 				E07F7BAE27BA791700D7795A /* ViewModelProtocol.swift in Sources */,
 				E07F7BC227BA7A4B00D7795A /* MyViewModel.swift in Sources */,
 				E07F7BC027BA7A4300D7795A /* MyViewController.swift in Sources */,
 				E07F7BA427BA763400D7795A /* HomeViewModel.swift in Sources */,
+				E07F7BCF27BB22A200D7795A /* MainPageTabBarEnum.swift in Sources */,
+				E07F7BDB27BB340600D7795A /* CellSettingProtocol.swift in Sources */,
 				E07F7BBE27BA7A3800D7795A /* FavoriteViewCoordinator.swift in Sources */,
 				E07F7B9327BA37AD00D7795A /* Router.swift in Sources */,
 				E07F7BC827BA7A6B00D7795A /* TalkViewModel.swift in Sources */,
+				E07F7BEF27BB3D0400D7795A /* Profile.swift in Sources */,
+				E07F7BD427BB288E00D7795A /* Int_Extension.swift in Sources */,
 				E07F7BA627BA763E00D7795A /* HomeViewCoordinator.swift in Sources */,
+				E07F7BEB27BB3CB400D7795A /* IntroductionResModel.swift in Sources */,
 				E07F7B9B27BA74C800D7795A /* TabBarPage.swift in Sources */,
 				E07F7BC427BA7A5600D7795A /* MyViewCoordinator.swift in Sources */,
 				E07F7BA227BA761D00D7795A /* HomeViewController.swift in Sources */,
+				E07F7BF527BB885B00D7795A /* MainIntroduction.swift in Sources */,
 				E07F7B5F27BA369D00D7795A /* AppDelegate.swift in Sources */,
 				E07F7B6127BA369D00D7795A /* SceneDelegate.swift in Sources */,
+				E07F7BD627BB316B00D7795A /* HomeMainViewController.swift in Sources */,
+				E07F7BDE27BB3A0B00D7795A /* Introduction.swift in Sources */,
+				E07F7BCD27BB1B9300D7795A /* HomeTapBarCollectionViewCell.swift in Sources */,
 				E07F7B9627BA386300D7795A /* GramAPI.swift in Sources */,
 				E07F7BC627BA7A6200D7795A /* TalkViewController.swift in Sources */,
 				E07F7BA927BA768000D7795A /* ViewSettingProtocol.swift in Sources */,
@@ -517,7 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E07F7B7627BA36A200D7795A /* GramTestAppTests.swift in Sources */,
+				E07F7B7627BA36A200D7795A /* GramAppDelegateTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +799,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -704,6 +829,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

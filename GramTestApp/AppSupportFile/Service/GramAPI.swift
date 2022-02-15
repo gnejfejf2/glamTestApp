@@ -15,7 +15,7 @@ protocol NetworkingService {
 
     var jsonDecoder: JSONDecoder { get }
     
-    func request<T: Decodable>(_ api: NetworkAPI) -> Single<T>
+    func request<T: Decodable>(type : T.Type , _ api: NetworkAPI) -> Single<T> 
     
 }
 
@@ -33,14 +33,18 @@ final class NetworkingAPI: NetworkingService {
     //provider 객체 삽입
     init(provider: MoyaProvider<NetworkAPI> = MoyaProvider<NetworkAPI>()) {
         self.provider = provider
+        
+    
     }
     
     //데이터통신코드
-    func request<T: Decodable>(_ api: NetworkAPI) -> Single<T> {
+    func request<T: Decodable>(type : T.Type , _ api: NetworkAPI) -> Single<T> {
         return provider.rx
             .request(api)
             .filterSuccessfulStatusCodes()
+           
             .map( T.self )
+            
     }
   
 }
@@ -103,21 +107,24 @@ extension NetworkAPI : TargetType {
     var sampleData: Data {
         switch self {
         case .introduction:
-            return stubbedResponse("stubbedResponse")
+            return stubbedResponse("Introduction")
         case .introductionAdditional:
-            return stubbedResponse("introductionAdditional")
+            return stubbedResponse("IntroductionAdditional")
         case .introductionCustom:
-            return stubbedResponse("introductionCustom")
+            return stubbedResponse("IntroductionCustom")
         case .profile:
-            return stubbedResponse("profile")
+            return stubbedResponse("Profile")
         }
     }
     
     func stubbedResponse(_ filename: String) -> Data! {
-        let bundlePath = Bundle.main.path(forResource: "Stub", ofType: "bundle")
+        let bundlePath = Bundle.main.path(forResource: "Json", ofType: "bundle")
         let bundle = Bundle(path: bundlePath!)
         let path = bundle?.path(forResource: filename, ofType: "json")
+        print(String(data: try! Data(contentsOf: URL(fileURLWithPath: path!)), encoding: .utf8))
         return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
     }
+    
+    
     
 }

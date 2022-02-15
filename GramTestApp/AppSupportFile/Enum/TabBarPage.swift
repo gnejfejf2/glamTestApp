@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 enum TabBarPage {
@@ -47,6 +48,21 @@ enum TabBarPage {
         }
     }
 
+    func getTabBarItem() -> UITabBarItem {
+        switch self {
+        case .Home:
+            return UITabBarItem(title: nil, image: UIImage(named: "home"), tag: self.pageOrderNumber())
+        case .Play:
+            return UITabBarItem(title: nil, image: UIImage(named: "live"), tag: self.pageOrderNumber())
+        case .Favorite:
+            return UITabBarItem(title: nil, image: UIImage(named: "station"), tag: self.pageOrderNumber())
+        case .Talk:
+            return UITabBarItem(title: nil, image: UIImage(named: "connection"), tag: self.pageOrderNumber())
+        case .My:
+            return UITabBarItem(title: nil, image: UIImage(named: "more"), tag: self.pageOrderNumber())
+        }
+    }
+    
     func pageOrderNumber() -> Int {
         switch self {
         case .Home:

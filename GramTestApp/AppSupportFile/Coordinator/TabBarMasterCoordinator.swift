@@ -44,10 +44,10 @@ class TabBarMasterCoordinator: NSObject, Coordinator , TabBarMasterProtocol {
         tabBarController.delegate = self
         
         tabBarController.setViewControllers(tabControllers, animated: true)
-        
-        tabBarController.selectedIndex = TabBarPage.first.pageOrderNumber()
-        tabBarController.tabBar.isHidden = true
-       
+        //최초 선택값 셋팅
+        tabBarController.selectedIndex = TabBarPage.Home.pageOrderNumber()
+        tabBarController.tabBar.tintColor = .black
+        tabBarController.tabBar.backgroundColor = .white
         appMainCoordinator.appMainRouter.push(tabBarController, isAnimated: false, onNavigationBack: nil)
      
     }
@@ -56,21 +56,34 @@ class TabBarMasterCoordinator: NSObject, Coordinator , TabBarMasterProtocol {
         
 
         switch page {
-        case .first:
+        case .Home:
             // If needed: Each tab bar flow can have it's own Coordinator.
-            let coordinator = MainPageViewCoordinator(self , page)
-            childCoordinator.append(coordinator)
-         
-            coordinator.start()
-            return coordinator
-        case .second:
-            let coordinator = SecondTabViewCooridnator(self , page)
+            let coordinator = HomeViewCoordinator(self , page)
+          
             childCoordinator.append(coordinator)
             
             coordinator.start()
             return coordinator
-        case .third:
-            let coordinator = ThirdTabViewCoordinator(self , page)
+        case .Play:
+            let coordinator = PlayViewCoordinator(self , page)
+            childCoordinator.append(coordinator)
+            
+            coordinator.start()
+            return coordinator
+        case .Favorite:
+            let coordinator = FavoriteViewCoordinator(self , page)
+            childCoordinator.append(coordinator)
+        
+            coordinator.start()
+            return coordinator
+        case .Talk:
+            let coordinator = TalkViewCoordinator(self , page)
+            childCoordinator.append(coordinator)
+        
+            coordinator.start()
+            return coordinator
+        case .My:
+            let coordinator = MyViewCoordinator(self , page)
             childCoordinator.append(coordinator)
         
             coordinator.start()
@@ -87,6 +100,6 @@ class TabBarMasterCoordinator: NSObject, Coordinator , TabBarMasterProtocol {
 extension TabBarMasterCoordinator: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController,
                           didSelect viewController: UIViewController) {
-        print(tabBarController.selectedIndex)
+//        print(tabBarController.selectedIndex)
     }
 }

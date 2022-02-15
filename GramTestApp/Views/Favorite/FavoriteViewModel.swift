@@ -6,3 +6,30 @@
 //
 
 import Foundation
+protocol FavoriteViewModelProtocol {
+    var coordinator : FavoriteViewCoordinator { get }
+ 
+}
+
+
+class FavoriteViewModel : ViewModelProtocol , FavoriteViewModelProtocol{
+    
+    var coordinator : FavoriteViewCoordinator
+    
+    init(coordinator : FavoriteViewCoordinator){
+        self.coordinator = coordinator
+    }
+    
+    
+    func inputBinding() {
+        
+    }
+    
+    func outputBinding() {
+        
+    }
+    
+    
+    
+    
+}
