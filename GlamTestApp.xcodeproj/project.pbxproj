@@ -16,7 +16,7 @@
 		E07F7B7627BA36A200D7795A /* GramAppDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B7527BA36A200D7795A /* GramAppDelegateTest.swift */; };
 		E07F7B9027BA377900D7795A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B8F27BA377900D7795A /* AppCoordinator.swift */; };
 		E07F7B9327BA37AD00D7795A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B9227BA37AD00D7795A /* Router.swift */; };
-		E07F7B9627BA386300D7795A /* GramAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B9527BA386300D7795A /* GramAPI.swift */; };
+		E07F7B9627BA386300D7795A /* GlamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B9527BA386300D7795A /* GlamAPI.swift */; };
 		E07F7B9827BA749400D7795A /* TabBarMasterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B9727BA749400D7795A /* TabBarMasterCoordinator.swift */; };
 		E07F7B9B27BA74C800D7795A /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B9A27BA74C800D7795A /* TabBarPage.swift */; };
 		E07F7B9D27BA75BC00D7795A /* TabViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7B9C27BA75BC00D7795A /* TabViewCoordinator.swift */; };
@@ -53,6 +53,21 @@
 		E07F7BF527BB885B00D7795A /* MainIntroduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BF427BB885B00D7795A /* MainIntroduction.swift */; };
 		E07F7BF827BB88AD00D7795A /* MainIntroductionType_Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7BF727BB88AD00D7795A /* MainIntroductionType_Enum.swift */; };
 		E07F7C0127BB92C900D7795A /* Json.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E07F7C0027BB92C900D7795A /* Json.bundle */; };
+		E07F7C0327BBCB8100D7795A /* String_Extesnion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C0227BBCB8100D7795A /* String_Extesnion.swift */; };
+		E07F7C0527BBCD9500D7795A /* HomeVIewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C0427BBCD9500D7795A /* HomeVIewTests.swift */; };
+		E07F7C0927BBDF4B00D7795A /* CustomIntroductionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C0827BBDF4B00D7795A /* CustomIntroductionCollectionViewCell.swift */; };
+		E07F7C0B27BBDFFE00D7795A /* CustomPickStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C0A27BBDFFE00D7795A /* CustomPickStackView.swift */; };
+		E07F7C0D27BBE08600D7795A /* CustomPick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C0C27BBE08600D7795A /* CustomPick.swift */; };
+		E07F7C0F27BBE12A00D7795A /* CustomPick_Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C0E27BBE12A00D7795A /* CustomPick_Enum.swift */; };
+		E07F7C1127BC65CB00D7795A /* IntroductionAddResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C1027BC65CB00D7795A /* IntroductionAddResModel.swift */; };
+		E07F7C1327BC65FB00D7795A /* NextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C1227BC65FB00D7795A /* NextModel.swift */; };
+		E07F7C1527BC916100D7795A /* UIView_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C1427BC916100D7795A /* UIView_Extension.swift */; };
+		E07F7C1727BCC2FF00D7795A /* UIViewController_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C1627BCC2FF00D7795A /* UIViewController_Extension.swift */; };
+		E07F7C1A27BCC35A00D7795A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C1927BCC35A00D7795A /* ProfileViewController.swift */; };
+		E07F7C1C27BCC48C00D7795A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C1B27BCC48C00D7795A /* ProfileViewModel.swift */; };
+		E07F7C1E27BCC4EA00D7795A /* ProfileViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C1D27BCC4EA00D7795A /* ProfileViewCoordinator.swift */; };
+		E07F7C2027BCDF4600D7795A /* ImageCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C1F27BCDF4600D7795A /* ImageCellCollectionViewCell.swift */; };
+		E07F7C2327BCE67800D7795A /* DevideLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07F7C2227BCE67800D7795A /* DevideLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,17 +87,17 @@
 		94DFBC4774EB2C48B9543CEE /* Pods-GramTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GramTestApp.release.xcconfig"; path = "Target Support Files/Pods-GramTestApp/Pods-GramTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		970FA2EF8BF1456F7B95AD6B /* Pods-GramTestAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GramTestAppTests.release.xcconfig"; path = "Target Support Files/Pods-GramTestAppTests/Pods-GramTestAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		B895A6B612888FB61F446E59 /* Pods_GramTestAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GramTestAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E07F7B5B27BA369D00D7795A /* GramTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GramTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07F7B5B27BA369D00D7795A /* GlamTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlamTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07F7B5E27BA369D00D7795A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E07F7B6027BA369D00D7795A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E07F7B6727BA36A200D7795A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E07F7B6A27BA36A200D7795A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E07F7B6C27BA36A200D7795A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E07F7B7127BA36A200D7795A /* GramTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GramTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07F7B7127BA36A200D7795A /* GlamTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlamTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07F7B7527BA36A200D7795A /* GramAppDelegateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GramAppDelegateTest.swift; sourceTree = "<group>"; };
 		E07F7B8F27BA377900D7795A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E07F7B9227BA37AD00D7795A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		E07F7B9527BA386300D7795A /* GramAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GramAPI.swift; sourceTree = "<group>"; };
+		E07F7B9527BA386300D7795A /* GlamAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlamAPI.swift; sourceTree = "<group>"; };
 		E07F7B9727BA749400D7795A /* TabBarMasterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMasterCoordinator.swift; sourceTree = "<group>"; };
 		E07F7B9A27BA74C800D7795A /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
 		E07F7B9C27BA75BC00D7795A /* TabViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewCoordinator.swift; sourceTree = "<group>"; };
@@ -119,6 +134,21 @@
 		E07F7BF427BB885B00D7795A /* MainIntroduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIntroduction.swift; sourceTree = "<group>"; };
 		E07F7BF727BB88AD00D7795A /* MainIntroductionType_Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIntroductionType_Enum.swift; sourceTree = "<group>"; };
 		E07F7C0027BB92C900D7795A /* Json.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Json.bundle; sourceTree = "<group>"; };
+		E07F7C0227BBCB8100D7795A /* String_Extesnion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Extesnion.swift; sourceTree = "<group>"; };
+		E07F7C0427BBCD9500D7795A /* HomeVIewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVIewTests.swift; sourceTree = "<group>"; };
+		E07F7C0827BBDF4B00D7795A /* CustomIntroductionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIntroductionCollectionViewCell.swift; sourceTree = "<group>"; };
+		E07F7C0A27BBDFFE00D7795A /* CustomPickStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickStackView.swift; sourceTree = "<group>"; };
+		E07F7C0C27BBE08600D7795A /* CustomPick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPick.swift; sourceTree = "<group>"; };
+		E07F7C0E27BBE12A00D7795A /* CustomPick_Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPick_Enum.swift; sourceTree = "<group>"; };
+		E07F7C1027BC65CB00D7795A /* IntroductionAddResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionAddResModel.swift; sourceTree = "<group>"; };
+		E07F7C1227BC65FB00D7795A /* NextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextModel.swift; sourceTree = "<group>"; };
+		E07F7C1427BC916100D7795A /* UIView_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_Extension.swift; sourceTree = "<group>"; };
+		E07F7C1627BCC2FF00D7795A /* UIViewController_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Extension.swift; sourceTree = "<group>"; };
+		E07F7C1927BCC35A00D7795A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E07F7C1B27BCC48C00D7795A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		E07F7C1D27BCC4EA00D7795A /* ProfileViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCoordinator.swift; sourceTree = "<group>"; };
+		E07F7C1F27BCDF4600D7795A /* ImageCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		E07F7C2227BCE67800D7795A /* DevideLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevideLineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,8 +205,8 @@
 		E07F7B5C27BA369D00D7795A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E07F7B5B27BA369D00D7795A /* GramTestApp.app */,
-				E07F7B7127BA36A200D7795A /* GramTestAppTests.xctest */,
+				E07F7B5B27BA369D00D7795A /* GlamTestApp.app */,
+				E07F7B7127BA36A200D7795A /* GlamTestAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,6 +230,7 @@
 			children = (
 				E07F7C0027BB92C900D7795A /* Json.bundle */,
 				E07F7B7527BA36A200D7795A /* GramAppDelegateTest.swift */,
+				E07F7C0427BBCD9500D7795A /* HomeVIewTests.swift */,
 			);
 			path = GramTestAppTests;
 			sourceTree = "<group>";
@@ -231,7 +262,7 @@
 		E07F7B9427BA384E00D7795A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E07F7B9527BA386300D7795A /* GramAPI.swift */,
+				E07F7B9527BA386300D7795A /* GlamAPI.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -242,6 +273,7 @@
 				E07F7B9A27BA74C800D7795A /* TabBarPage.swift */,
 				E07F7BCE27BB22A200D7795A /* MainPageTabBarEnum.swift */,
 				E07F7BF727BB88AD00D7795A /* MainIntroductionType_Enum.swift */,
+				E07F7C0E27BBE12A00D7795A /* CustomPick_Enum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -249,6 +281,7 @@
 		E07F7B9E27BA75ED00D7795A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E07F7C1827BCC34D00D7795A /* Profile */,
 				E07F7BB627BA79DF00D7795A /* Favorite */,
 				E07F7BA027BA760F00D7795A /* Home */,
 				E07F7BB827BA79FA00D7795A /* My */,
@@ -343,6 +376,7 @@
 			children = (
 				E07F7BCC27BB1B9300D7795A /* HomeTapBarCollectionViewCell.swift */,
 				E07F7BD827BB33D900D7795A /* IntroductionCollectionViewCell.swift */,
+				E07F7C0827BBDF4B00D7795A /* CustomIntroductionCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -352,6 +386,9 @@
 			children = (
 				E07F7BD127BB281B00D7795A /* CGFloat_Extension.swift */,
 				E07F7BD327BB288E00D7795A /* Int_Extension.swift */,
+				E07F7C0227BBCB8100D7795A /* String_Extesnion.swift */,
+				E07F7C1427BC916100D7795A /* UIView_Extension.swift */,
+				E07F7C1627BCC2FF00D7795A /* UIViewController_Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -370,6 +407,8 @@
 				E07F7BF627BB886200D7795A /* TypeModel */,
 				E07F7BDD27BB3A0B00D7795A /* Introduction.swift */,
 				E07F7BEE27BB3D0400D7795A /* Profile.swift */,
+				E07F7C0C27BBE08600D7795A /* CustomPick.swift */,
+				E07F7C1227BC65FB00D7795A /* NextModel.swift */,
 				E07F7BE027BB3A1500D7795A /* ReqModel */,
 				E07F7BDF27BB3A0F00D7795A /* ResModel */,
 			);
@@ -380,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				E07F7BEA27BB3CB400D7795A /* IntroductionResModel.swift */,
+				E07F7C1027BC65CB00D7795A /* IntroductionAddResModel.swift */,
 				E07F7BEC27BB3CF800D7795A /* ProfileResModel.swift */,
 			);
 			path = ResModel;
@@ -396,6 +436,8 @@
 			isa = PBXGroup;
 			children = (
 				E07F7BF227BB87E500D7795A /* BasePaddingLabel.swift */,
+				E07F7C0A27BBDFFE00D7795A /* CustomPickStackView.swift */,
+				E07F7C2227BCE67800D7795A /* DevideLineView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -408,12 +450,31 @@
 			path = TypeModel;
 			sourceTree = "<group>";
 		};
+		E07F7C1827BCC34D00D7795A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7C2127BCDF5700D7795A /* Cell */,
+				E07F7C1927BCC35A00D7795A /* ProfileViewController.swift */,
+				E07F7C1B27BCC48C00D7795A /* ProfileViewModel.swift */,
+				E07F7C1D27BCC4EA00D7795A /* ProfileViewCoordinator.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E07F7C2127BCDF5700D7795A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E07F7C1F27BCDF4600D7795A /* ImageCellCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E07F7B5A27BA369D00D7795A /* GramTestApp */ = {
+		E07F7B5A27BA369D00D7795A /* GlamTestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E07F7B8527BA36A200D7795A /* Build configuration list for PBXNativeTarget "GramTestApp" */;
+			buildConfigurationList = E07F7B8527BA36A200D7795A /* Build configuration list for PBXNativeTarget "GlamTestApp" */;
 			buildPhases = (
 				09EAA43F2A2B418C90230987 /* [CP] Check Pods Manifest.lock */,
 				E07F7B5727BA369D00D7795A /* Sources */,
@@ -425,14 +486,14 @@
 			);
 			dependencies = (
 			);
-			name = GramTestApp;
+			name = GlamTestApp;
 			productName = GramTestApp;
-			productReference = E07F7B5B27BA369D00D7795A /* GramTestApp.app */;
+			productReference = E07F7B5B27BA369D00D7795A /* GlamTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E07F7B7027BA36A200D7795A /* GramTestAppTests */ = {
+		E07F7B7027BA36A200D7795A /* GlamTestAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E07F7B8827BA36A200D7795A /* Build configuration list for PBXNativeTarget "GramTestAppTests" */;
+			buildConfigurationList = E07F7B8827BA36A200D7795A /* Build configuration list for PBXNativeTarget "GlamTestAppTests" */;
 			buildPhases = (
 				705ED4762746E8E45BD93AE8 /* [CP] Check Pods Manifest.lock */,
 				E07F7B6D27BA36A200D7795A /* Sources */,
@@ -445,9 +506,9 @@
 			dependencies = (
 				E07F7B7327BA36A200D7795A /* PBXTargetDependency */,
 			);
-			name = GramTestAppTests;
+			name = GlamTestAppTests;
 			productName = GramTestAppTests;
-			productReference = E07F7B7127BA36A200D7795A /* GramTestAppTests.xctest */;
+			productReference = E07F7B7127BA36A200D7795A /* GlamTestAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -469,7 +530,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E07F7B5627BA369D00D7795A /* Build configuration list for PBXProject "GramTestApp" */;
+			buildConfigurationList = E07F7B5627BA369D00D7795A /* Build configuration list for PBXProject "GlamTestApp" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -482,8 +543,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E07F7B5A27BA369D00D7795A /* GramTestApp */,
-				E07F7B7027BA36A200D7795A /* GramTestAppTests */,
+				E07F7B5A27BA369D00D7795A /* GlamTestApp */,
+				E07F7B7027BA36A200D7795A /* GlamTestAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -598,42 +659,56 @@
 				E07F7BB327BA79CC00D7795A /* PlayViewModel.swift in Sources */,
 				E07F7BD227BB281B00D7795A /* CGFloat_Extension.swift in Sources */,
 				E07F7B9827BA749400D7795A /* TabBarMasterCoordinator.swift in Sources */,
+				E07F7C1727BCC2FF00D7795A /* UIViewController_Extension.swift in Sources */,
 				E07F7BB127BA79C300D7795A /* PlayViewController.swift in Sources */,
 				E07F7B9027BA377900D7795A /* AppCoordinator.swift in Sources */,
 				E07F7BBA27BA7A1200D7795A /* FavoriteViewController.swift in Sources */,
 				E07F7BF827BB88AD00D7795A /* MainIntroductionType_Enum.swift in Sources */,
 				E07F7BB527BA79D900D7795A /* PlayViewCoordinator.swift in Sources */,
 				E07F7BAB27BA76A600D7795A /* DesignColor.swift in Sources */,
+				E07F7C2327BCE67800D7795A /* DevideLineView.swift in Sources */,
 				E07F7BD927BB33D900D7795A /* IntroductionCollectionViewCell.swift in Sources */,
+				E07F7C0F27BBE12A00D7795A /* CustomPick_Enum.swift in Sources */,
 				E07F7BCA27BA7A7600D7795A /* TalkViewCoordinator.swift in Sources */,
 				E07F7BF327BB87E500D7795A /* BasePaddingLabel.swift in Sources */,
 				E07F7BBC27BA7A2800D7795A /* FavoriteViewModel.swift in Sources */,
+				E07F7C1127BC65CB00D7795A /* IntroductionAddResModel.swift in Sources */,
 				E07F7B9D27BA75BC00D7795A /* TabViewCoordinator.swift in Sources */,
 				E07F7BAE27BA791700D7795A /* ViewModelProtocol.swift in Sources */,
 				E07F7BC227BA7A4B00D7795A /* MyViewModel.swift in Sources */,
+				E07F7C2027BCDF4600D7795A /* ImageCellCollectionViewCell.swift in Sources */,
 				E07F7BC027BA7A4300D7795A /* MyViewController.swift in Sources */,
 				E07F7BA427BA763400D7795A /* HomeViewModel.swift in Sources */,
+				E07F7C1A27BCC35A00D7795A /* ProfileViewController.swift in Sources */,
+				E07F7C1327BC65FB00D7795A /* NextModel.swift in Sources */,
+				E07F7C0927BBDF4B00D7795A /* CustomIntroductionCollectionViewCell.swift in Sources */,
 				E07F7BCF27BB22A200D7795A /* MainPageTabBarEnum.swift in Sources */,
 				E07F7BDB27BB340600D7795A /* CellSettingProtocol.swift in Sources */,
 				E07F7BBE27BA7A3800D7795A /* FavoriteViewCoordinator.swift in Sources */,
 				E07F7B9327BA37AD00D7795A /* Router.swift in Sources */,
 				E07F7BC827BA7A6B00D7795A /* TalkViewModel.swift in Sources */,
+				E07F7C1C27BCC48C00D7795A /* ProfileViewModel.swift in Sources */,
 				E07F7BEF27BB3D0400D7795A /* Profile.swift in Sources */,
 				E07F7BD427BB288E00D7795A /* Int_Extension.swift in Sources */,
+				E07F7C0D27BBE08600D7795A /* CustomPick.swift in Sources */,
 				E07F7BA627BA763E00D7795A /* HomeViewCoordinator.swift in Sources */,
 				E07F7BEB27BB3CB400D7795A /* IntroductionResModel.swift in Sources */,
 				E07F7B9B27BA74C800D7795A /* TabBarPage.swift in Sources */,
+				E07F7C0B27BBDFFE00D7795A /* CustomPickStackView.swift in Sources */,
 				E07F7BC427BA7A5600D7795A /* MyViewCoordinator.swift in Sources */,
 				E07F7BA227BA761D00D7795A /* HomeViewController.swift in Sources */,
 				E07F7BF527BB885B00D7795A /* MainIntroduction.swift in Sources */,
+				E07F7C1527BC916100D7795A /* UIView_Extension.swift in Sources */,
 				E07F7B5F27BA369D00D7795A /* AppDelegate.swift in Sources */,
 				E07F7B6127BA369D00D7795A /* SceneDelegate.swift in Sources */,
 				E07F7BD627BB316B00D7795A /* HomeMainViewController.swift in Sources */,
 				E07F7BDE27BB3A0B00D7795A /* Introduction.swift in Sources */,
+				E07F7C0327BBCB8100D7795A /* String_Extesnion.swift in Sources */,
 				E07F7BCD27BB1B9300D7795A /* HomeTapBarCollectionViewCell.swift in Sources */,
-				E07F7B9627BA386300D7795A /* GramAPI.swift in Sources */,
+				E07F7B9627BA386300D7795A /* GlamAPI.swift in Sources */,
 				E07F7BC627BA7A6200D7795A /* TalkViewController.swift in Sources */,
 				E07F7BA927BA768000D7795A /* ViewSettingProtocol.swift in Sources */,
+				E07F7C1E27BCC4EA00D7795A /* ProfileViewCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E07F7B7627BA36A200D7795A /* GramAppDelegateTest.swift in Sources */,
+				E07F7C0527BBCD9500D7795A /* HomeVIewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +726,7 @@
 /* Begin PBXTargetDependency section */
 		E07F7B7327BA36A200D7795A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E07F7B5A27BA369D00D7795A /* GramTestApp */;
+			target = E07F7B5A27BA369D00D7795A /* GlamTestApp */;
 			targetProxy = E07F7B7227BA36A200D7795A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -805,7 +881,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jyk.GramTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jyk.GlamTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -835,7 +911,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jyk.GramTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jyk.GlamTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -860,7 +936,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GramTestApp.app/GramTestApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GlamTestApp.app/GlamTestApp";
 			};
 			name = Debug;
 		};
@@ -881,14 +957,14 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GramTestApp.app/GramTestApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GlamTestApp.app/GlamTestApp";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E07F7B5627BA369D00D7795A /* Build configuration list for PBXProject "GramTestApp" */ = {
+		E07F7B5627BA369D00D7795A /* Build configuration list for PBXProject "GlamTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E07F7B8327BA36A200D7795A /* Debug */,
@@ -897,7 +973,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E07F7B8527BA36A200D7795A /* Build configuration list for PBXNativeTarget "GramTestApp" */ = {
+		E07F7B8527BA36A200D7795A /* Build configuration list for PBXNativeTarget "GlamTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E07F7B8627BA36A200D7795A /* Debug */,
@@ -906,7 +982,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E07F7B8827BA36A200D7795A /* Build configuration list for PBXNativeTarget "GramTestAppTests" */ = {
+		E07F7B8827BA36A200D7795A /* Build configuration list for PBXNativeTarget "GlamTestAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E07F7B8927BA36A200D7795A /* Debug */,

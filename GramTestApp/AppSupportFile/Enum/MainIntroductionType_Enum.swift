@@ -8,8 +8,8 @@
 import Foundation
 
 enum MainIntroductionType {
-    
-    case Cell
+    case TodayPick
+    case AddPick
     case Customize
     
 }

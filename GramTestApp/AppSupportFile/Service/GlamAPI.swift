@@ -15,7 +15,7 @@ protocol NetworkingService {
 
     var jsonDecoder: JSONDecoder { get }
     
-    func request<T: Decodable>(type : T.Type , _ api: NetworkAPI) -> Single<T> 
+    func request<T: Decodable>(type : T.Type , _ api: GlamAPI) -> Single<T> 
     
 }
 
@@ -28,29 +28,39 @@ final class NetworkingAPI: NetworkingService {
         return decoder
     }
     
-    let provider: MoyaProvider<NetworkAPI>
+    let provider: MoyaProvider<GlamAPI>
     
     //provider 객체 삽입
-    init(provider: MoyaProvider<NetworkAPI> = MoyaProvider<NetworkAPI>()) {
+    init(provider: MoyaProvider<GlamAPI> = MoyaProvider<GlamAPI>()) {
         self.provider = provider
         
     
     }
     
     //데이터통신코드
-    func request<T: Decodable>(type : T.Type , _ api: NetworkAPI) -> Single<T> {
+    func request<T: Decodable>(type : T.Type , _ api: GlamAPI) -> Single<T> {
         return provider.rx
             .request(api)
             .filterSuccessfulStatusCodes()
-           
+            
             .map( T.self )
             
     }
   
+    
+    //데이터통신코드
+    func requestTest(_ api: GlamAPI) -> Single<Response> {
+        return provider.rx
+            .request(api)
+            .filterSuccessfulStatusCodes()
+            
+//            .map( T.self )
+            
+    }
 }
 
 
-enum NetworkAPI{
+enum GlamAPI{
     
     case introduction
     
@@ -59,13 +69,15 @@ enum NetworkAPI{
     case introductionCustom
     
     case profile
+    
+    case custom(path : String , method : Moya.Method)
 }
 
 
 
 
 
-extension NetworkAPI : TargetType {
+extension GlamAPI : TargetType {
     //BaseURL
     var baseURL: URL {
         return URL(string: "https://test.dev.cupist.de")!
@@ -85,6 +97,8 @@ extension NetworkAPI : TargetType {
             return "/introduction/custom"
         case .profile:
             return "/profile"
+        case .custom(path: let path, method: _):
+            return path
         }
        
     }
@@ -93,6 +107,8 @@ extension NetworkAPI : TargetType {
         switch self {
         case .introductionCustom :
             return .post
+        case .custom(path : _ , method: let method) :
+            return method
         default :
             return .get
         }
@@ -114,14 +130,21 @@ extension NetworkAPI : TargetType {
             return stubbedResponse("IntroductionCustom")
         case .profile:
             return stubbedResponse("Profile")
+        case .custom(path: let path, method: _):
+            let filePath = path.components(separatedBy: ["/"]).joined()
+       
+            
+            return stubbedResponse(filePath)
         }
     }
     
     func stubbedResponse(_ filename: String) -> Data! {
+        
+        
         let bundlePath = Bundle.main.path(forResource: "Json", ofType: "bundle")
         let bundle = Bundle(path: bundlePath!)
         let path = bundle?.path(forResource: filename, ofType: "json")
-        print(String(data: try! Data(contentsOf: URL(fileURLWithPath: path!)), encoding: .utf8))
+        print(filename)
         return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
     }
     

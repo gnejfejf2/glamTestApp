@@ -17,7 +17,8 @@ struct Introduction : Codable {
     let distance, height : Int?
     let introduction: String?
     let job, location : String?
-    let pictures: [String]?
+    
+    var pictures: [String]?
     
     
     func jobDistanceText() -> String{

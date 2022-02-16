@@ -43,7 +43,6 @@ class IntroductionCollectionViewCell : CellSuperClass {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textColor = .white
         $0.backgroundColor = .white.withAlphaComponent(0.25)
-       
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 8
     }
@@ -60,7 +59,6 @@ class IntroductionCollectionViewCell : CellSuperClass {
     }
     
     var nickNameAgeLabel = UILabel().then{
-        $0.text = "강지윤 , 24"
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
@@ -81,21 +79,18 @@ class IntroductionCollectionViewCell : CellSuperClass {
     }
     
     var introductionLabel = UILabel().then{
-        $0.text = "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd"
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         $0.numberOfLines = 2
     }
     
     var jobDistanceLabel = UILabel().then{
-        $0.text = "강지윤 ・ 24km"
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
     
     var heightLabel = UILabel().then{
-        $0.text = "흡연안함 ・ 테스트"
-        $0.textColor = .white.withAlphaComponent(0.6)
+       $0.textColor = .white.withAlphaComponent(0.6)
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
     
@@ -130,30 +125,46 @@ class IntroductionCollectionViewCell : CellSuperClass {
         $0.layer.cornerRadius = 8
     }
     
-    var item : Introduction?
+    var item : MainIntroductionModel?
+    var viewModel : HomeViewModel?
+    var bag = DisposeBag()
+    
     
     func uiSetting(){
         
-     
-        guard let item = item else { return }
-        nickNameAgeLabel.text = "\(item.name), \(item.age)"
-        
-        if(item.introduction == nil){
-            introductionLabel.isHidden = true
-            jobDistanceLabel.text = item.jobDistanceText()
-            heightLabel.text = item.heightText()
+        if(item?.cellType == .TodayPick){
+            todayPick.isHidden = false
         }else{
+            todayPick.isHidden = true
+        }
+     
+        guard let itemData = item?.data else { return }
+        nickNameAgeLabel.text = "\(itemData.name), \(itemData.age)"
+        
+        if(itemData.introduction == nil){
+            introductionLabel.isHidden = true
+            jobDistanceLabel.isHidden = false
+            heightLabel.isHidden = false
+            jobDistanceLabel.text = itemData.jobDistanceText()
+            heightLabel.text = itemData.heightText()
+        }else{
+            introductionLabel.isHidden = false
             jobDistanceLabel.isHidden = true
             heightLabel.isHidden = true
-            introductionLabel.text = item.introduction!
+            introductionLabel.text = itemData.introduction!
         }
-        print(item.pictures![0])
-        mainImageView.kf.setImage(with: URL(string: "https://test.dev.cupist.de/profile/02.png")!)
-    }
+        
+        if itemData.pictures?.count ?? 0 > 0 {
+            mainImageView.kf.setImage(with: itemData.pictures?[0].getImageURL())
+        }
+
+     }
     
     override func addSubviews() {
-        addSubview(mainImageView)
-        addSubview(informationStackView)
+        contentView.addSubview(mainImageView)
+        contentView.addSubview(informationStackView)
+//        contentview.addSubview(mainImageView)
+//        addSubview(informationStackView)
         
     }
     
@@ -172,7 +183,17 @@ class IntroductionCollectionViewCell : CellSuperClass {
         informationBottomStackView.snp.makeConstraints { make in
             make.leading.bottom.trailing.equalToSuperview()
         }
+        
+        cancelButton.rx.tap
+            .asDriver { _ in .never() }
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                guard let data = self.item else { return }
+
+                self.viewModel?.input.removeAction.onNext(data)
+            }).disposed(by: bag)
+        
     }
     
-    
+ 
 }

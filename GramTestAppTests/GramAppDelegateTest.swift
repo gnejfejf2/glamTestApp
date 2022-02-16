@@ -9,7 +9,7 @@ import XCTest
 import RxTest
 import RxSwift
 
-@testable import GramTestApp
+@testable import GlamTestApp
 
 class GramAppDelegateTest: XCTestCase {
 

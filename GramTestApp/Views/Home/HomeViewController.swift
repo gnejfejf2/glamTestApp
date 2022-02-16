@@ -9,12 +9,11 @@ import RxGesture
 
 
 
-class HomeViewController: UIViewController , ViewSettingProtocol {
+class HomeViewController: SuperViewControllerSetting {
     
     
-   
+    
     lazy var collectionView : UICollectionView = {
-
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 8
         flowLayout.scrollDirection = .horizontal
@@ -22,7 +21,11 @@ class HomeViewController: UIViewController , ViewSettingProtocol {
         view.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.id)
         return view
     }()
-
+    
+    var settingButton = UIButton().then{
+        $0.setImage(UIImage(named: "setting"), for: .normal)
+    }
+    
     lazy var pageViewController: UIPageViewController = {
         let vc = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         return vc
@@ -33,55 +36,30 @@ class HomeViewController: UIViewController , ViewSettingProtocol {
     var dataSourceVC: [UIViewController] = []
     
     var viewModel : HomeViewModel?
-   
+    
     var currentPage: Int = 0 {
         didSet {
             bind(oldValue: oldValue, newValue: currentPage)
         }
     }
     
-   private let disposeBag = DisposeBag()
+   
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        uiDrawing()
-        uiSetting()
-        uiBinding()
-        eventBinding()
-        
-        
-        //뷰컨 넣기
-        dataSource.forEach { _ in
-            let vc = HomeMainViewController()
-            vc.viewModel = viewModel
-            dataSourceVC += [vc]
-        }
-        
-        currentPage = 0
+    override func viewWillAppear(_ animated: Bool) {
+        navigationBarSetting(hidden: true)
+        tabBarController?.tabBar.isHidden = false
     }
     
-    func uiDrawing() {
-        view.backgroundColor = .primaryColorReverse
+    override func uiDrawing() {
+        super.uiDrawing()
         view.addSubview(collectionView)
+        view.addSubview(settingButton)
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
-        collectionView.snp.makeConstraints { make in
-            
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
-            make.leading.trailing.equalToSuperview().offset(12)
-            make.height.equalTo(44)
-        }
-
-        pageViewController.view.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(12)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-
-        pageViewController.didMove(toParent: self)
-        
+     
     }
     
-    func uiSetting() {
+    override func uiSetting() {
         collectionView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         collectionView.rx.setDataSource(self)
@@ -89,23 +67,80 @@ class HomeViewController: UIViewController , ViewSettingProtocol {
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
-       
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
+            make.leading.equalToSuperview().offset(12)
+            make.trailing.equalTo(settingButton.snp.leading)
+            make.height.equalTo(44)
+        }
+        settingButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
+            make.trailing.equalToSuperview().offset(-12)
+        }
+        
+        
+        pageViewController.view.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom).offset(12)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        pageViewControllerSetting()
+        pageViewController.didMove(toParent: self)
+        
         if let firstVC = dataSourceVC.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
-        
-//        currentPage = 0
     }
     
-    func uiBinding() {
-        
+ 
+    
+    
+    override func eventBinding() {
+        settingButton.rx.tap
+            .asDriver { _ in .never() }
+            .drive{ [weak self] tapEvent in
+                guard let viewModel = self?.viewModel else { return }
+                viewModel.input.moveSettingView.onNext(tapEvent)
+            }
+            .disposed(by: disposeBag)
     }
     
-    func eventBinding() {
-        
+    
+    func pageViewControllerSetting(){
+        dataSourceVC = getPageViewControllers()
+        currentPage = 0
     }
     
+    func getPageViewControllers() -> [UIViewController]{
+        var views : [UIViewController] = []
+        //뷰컨 넣기
+        dataSource.forEach { item in
+            if(item == .Main){
+                let vc = HomeMainViewController()
+                vc.viewModel = viewModel
+                views += [vc]
+            }else{
+                let vc = UIViewController()
+                let red = CGFloat(arc4random_uniform(256)) / 255
+                let green = CGFloat(arc4random_uniform(256)) / 255
+                let blue = CGFloat(arc4random_uniform(256)) / 255
 
+                vc.view.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
+
+                let label = UILabel()
+                label.text = "123123"
+                label.font = .systemFont(ofSize: 56, weight: .bold)
+                
+                vc.view.addSubview(label)
+                label.snp.makeConstraints { make in
+                    make.center.equalToSuperview()
+                }
+                views += [vc]
+            }
+            
+        }
+        return views
+   }
     
     
     private func bind(oldValue: Int, newValue: Int) {
@@ -126,12 +161,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.id, for: indexPath)
         if let cell = cell as? MyCollectionViewCell {
-//            cell.model = dataSource[indexPath.item]
-            print(indexPath)
             cell.uiSetting(cellType: dataSource[indexPath[1]])
             
             cell.mainStackView.rx.tapGesture(configuration: .none)
@@ -140,7 +173,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 .drive(onNext: { [weak self] _ in
                     self?.didTapCell(at: indexPath)
                 }).disposed(by: cell.bag)
-
+            
         }
         return cell
     }
@@ -156,7 +189,7 @@ extension HomeViewController: UIPageViewControllerDataSource, UIPageViewControll
         }
         return dataSourceVC[previousIndex]
     }
-
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let index = dataSourceVC.firstIndex(of: viewController) else { return nil }
         let nextIndex = index + 1
@@ -165,10 +198,12 @@ extension HomeViewController: UIPageViewControllerDataSource, UIPageViewControll
         }
         return dataSourceVC[nextIndex]
     }
-
+    
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let currentVC = pageViewController.viewControllers?.first,
               let currentIndex = dataSourceVC.firstIndex(of: currentVC) else { return }
         currentPage = currentIndex
     }
+    
+    
 }
