@@ -38,31 +38,36 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
 
         inputBinding()
         outputBinding()
+        
+        print(output.userProfile.value)
+        
     }
     
     
     func inputBinding() {
         input.changeValue
-            .map { [weak self] type , value in
-                guard let self = self else { return Profile(gender: .F) }
-                var profile = self.output.userProfile.value
-                switch type {
+            .withLatestFrom(output.userProfile) {
+                
+                var profile = $1
+                switch $0.0 {
                 case .bodyTypes :
-                    profile.bodyType = BodyType(rawValue: value)
+                    profile.bodyType = BodyType(rawValue: $0.1)
                 case.educations :
-                    profile.education = Education(rawValue: value)
+                    profile.education = Education(rawValue: $0.1)
                 case .heightRange:
-                    profile.height = Int(value)
+                    profile.height = Int($0.1)
                 case .company:
-                    profile.company = value
+                    profile.company = $0.1
                 case .job:
-                    profile.job = value
+                    profile.job = $0.1
                 case .school:
-                    profile.school = value
+                    profile.school = $0.1
                 case .introduction:
-                    profile.introduction = value
+                    profile.introduction = $0.1
                 }
                 return profile
+                
+                
             }
             .bind(to: output.userProfile)
             .disposed(by: disposeBag)
@@ -77,13 +82,7 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
             .bind(to: output.metaData)
             .disposed(by: disposeBag)
         
-        
-//        output.userProfile
-//            .bind(onNext: { [weak self] item in
-//                self?.userManager.profile = item
-//            })
-//            .disposed(by: disposeBag)
-          
+
     }
     
     

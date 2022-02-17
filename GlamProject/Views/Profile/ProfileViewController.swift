@@ -182,7 +182,7 @@ class ProfileViewController: SuperViewControllerSetting , ProfileViewProtocol{
     }
     
     var schoolStack = KeyValueStackView().then{
-        $0.uiSetting(edit: true , key: "학력")
+        $0.uiSetting(edit: true , key: "학교")
     }
     
     var cellWidthHeight = (UIScreen.main.bounds.width - 2) / 3
@@ -333,7 +333,6 @@ class ProfileViewController: SuperViewControllerSetting , ProfileViewProtocol{
             .drive(bodyTypeStack.valueLabel.rx.text)
             .disposed(by: disposeBag)
         
-        
         viewModel?.output.userProfile
             .map{ $0.bodyType?.rawValue }
             .asDriver { _ in .never() }
@@ -345,6 +344,18 @@ class ProfileViewController: SuperViewControllerSetting , ProfileViewProtocol{
                 }
             })
             .drive(bodyTypeStack.valueLabel.rx.textColor)
+            .disposed(by: disposeBag)
+        
+        viewModel?.output.userProfile
+            .map{ $0.company }
+            .asDriver { _ in .never() }
+            .drive(companyStack.valueTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel?.output.userProfile
+            .map{ $0.job }
+            .asDriver { _ in .never() }
+            .drive(jobStack.valueTextField.rx.text)
             .disposed(by: disposeBag)
         
         
@@ -363,16 +374,9 @@ class ProfileViewController: SuperViewControllerSetting , ProfileViewProtocol{
         
         
         viewModel?.output.userProfile
-            .map{ $0.education?.rawValue }
+            .map{ $0.school }
             .asDriver { _ in .never() }
-            .map({ text in
-                if(text == "" || text == nil){
-                    return .gray4
-                }else{
-                    return .glamBlue
-                }
-            })
-            .drive(educationStack.valueLabel.rx.textColor)
+            .drive(schoolStack.valueTextField.rx.text)
             .disposed(by: disposeBag)
         
         
