@@ -7,7 +7,7 @@ import Moya
 
 protocol ProfileViewModelProtocol {
     var coordinator : ProfileViewCoordinator? { get }
- 
+    func userProfileGet() -> ( Observable<Profile> , Observable<ProfileSubData> )
 }
 
 
@@ -26,7 +26,7 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
     struct Output {
         let userProfile = BehaviorRelay<Profile>(value : Profile(gender: .F))
         var metaData = BehaviorRelay<ProfileSubData?>(value : nil)
-        let imageModels = BehaviorRelay<[String]>(value: ["1","2","3"])
+      
     }
     
     
@@ -53,7 +53,7 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
                 case.educations :
                     profile.education = Education(rawValue: value)
                 case .heightRange:
-                    print("키당~~")
+                    profile.height = Int(value)
                 case .company:
                     profile.company = value
                 case .job:

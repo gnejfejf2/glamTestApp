@@ -54,8 +54,6 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
     
     func inputBinding() {
         
-        
-        
         input.removeAction
             .map { [weak self] removedItem in
                 guard let self = self else { return [] }

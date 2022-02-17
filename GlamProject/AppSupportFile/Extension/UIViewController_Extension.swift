@@ -12,7 +12,8 @@ extension UIViewController {
         }else{
             navigationController?.setNavigationBarHidden(false, animated: false)
             navigationController?.navigationBar.backItem?.title = ""
-            navigationController?.navigationBar.tintColor = .primaryColor
+            navigationController?.navigationBar.tintColor = .black
+         
         }
     }
 }

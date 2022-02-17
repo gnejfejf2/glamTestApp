@@ -11,18 +11,25 @@ import RxCocoa
 import RxDataSources
 import RxRelay
 import RxGesture
+import CoreGraphics
 
-class ProfileViewController: SuperViewControllerSetting {
+protocol ProfileViewProtocol {
+    func openPopUp(type : MetaDataType , data : [MetaValue])
+    func dommyStringAdd(items : [String]) -> [String]
+    func openHeightPopUp(type : MetaDataType , data : ClosedRange<Int>)
+}
+
+
+class ProfileViewController: SuperViewControllerSetting , ProfileViewProtocol{
     
     
-     var viewModel : ProfileViewModel?
-  
+    var viewModel : ProfileViewModel?
+    
     lazy var mainScrollView = UIScrollView().then{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 0)
-        
         $0.addSubview(contentView)
-     
+        
     }
     
     lazy var contentView = UIView().then {
@@ -45,13 +52,13 @@ class ProfileViewController: SuperViewControllerSetting {
         collectionView.register(ImageCellCollectionViewCell.self, forCellWithReuseIdentifier: ImageCellCollectionViewCell.id)
         return collectionView
     }()
-   
+    
     lazy var imageMoreView = UIStackView().then{
         $0.axis = .vertical
         $0.spacing = 4
         $0.distribution = .equalSpacing
         $0.alignment = .center
-       
+        
         $0.addArrangedSubview(devideLineView1)
         $0.addArrangedSubview(imageTextView)
         $0.addArrangedSubview(devideLineView2)
@@ -68,7 +75,7 @@ class ProfileViewController: SuperViewControllerSetting {
         $0.alignment = .center
         $0.addArrangedSubview(morePhotoLabel)
         $0.addArrangedSubview(moreInformationLabel)
-     
+        
     }
     
     var morePhotoLabel = UILabel().then{
@@ -108,18 +115,18 @@ class ProfileViewController: SuperViewControllerSetting {
         $0.addArrangedSubview(jobStack)
         $0.addArrangedSubview(educationStack)
         $0.addArrangedSubview(schoolStack)
-
+        
     }
     
     
     var nickNameStack = KeyValueStackView().then{
         $0.uiSetting(lockIconHidden : false ,  key: "닉네임")
-       
+        
     }
     var genderStack = KeyValueStackView().then{
         $0.uiSetting(key: "성별")
         $0.valueLabel.textColor = .black
-      
+        
     }
     var birthdayStack = KeyValueStackView().then{
         $0.uiSetting(key: "생일")
@@ -151,9 +158,9 @@ class ProfileViewController: SuperViewControllerSetting {
         $0.font =  UIFont.systemFont(ofSize: 12, weight: .regular)
         $0.textColor = .gray4
     }
-   
+    
     var devideLineView4 = DevideLineView()
-
+    
     var heightStack = KeyValueStackView().then{
         $0.uiSetting(key: "키")
     }
@@ -163,7 +170,7 @@ class ProfileViewController: SuperViewControllerSetting {
     }
     
     var devideLineView5 = DevideLineView()
-
+    
     var companyStack = KeyValueStackView().then{
         $0.uiSetting(edit: true , key: "직장")
     }
@@ -178,10 +185,10 @@ class ProfileViewController: SuperViewControllerSetting {
     var schoolStack = KeyValueStackView().then{
         $0.uiSetting(edit: true , key: "학력")
     }
-   
+    
     var cellWidthHeight = (UIScreen.main.bounds.width - 2) / 3
     
-    var openPopUp : PopUpView?
+    var openPopUpView : PopUpView?
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,11 +197,11 @@ class ProfileViewController: SuperViewControllerSetting {
         notificationCenterRegister()
         tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         notificationCenterDelete()
     }
-
+    
     
     override func uiDrawing() {
         super.uiDrawing()
@@ -225,11 +232,11 @@ class ProfileViewController: SuperViewControllerSetting {
         
         informationStackView.snp.makeConstraints { make in
             make.top.equalTo(imageMoreView.snp.bottom)
-    
+            
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-
+        
         introductionTextField.snp.remakeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -239,16 +246,20 @@ class ProfileViewController: SuperViewControllerSetting {
             make.trailing.equalToSuperview().offset(-16)
         }
         
-       
+        
         
     }
-
+    
     override func uiBinding() {
-        viewModel?.output.imageModels
+        viewModel?.output.userProfile
+            .map{ $0.pictures }
+            .compactMap { $0 }
+        
             .map{ [weak self] in  self?.dommyStringAdd(items: $0) ?? [String]() }
             .asDriver { _ in .never() }
-            .drive(topImageCollectionView.rx.items(cellIdentifier: ImageCellCollectionViewCell.id, cellType: ImageCellCollectionViewCell.self)){ [weak self] (index , element , cell) in
-             
+            .drive(topImageCollectionView.rx.items(cellIdentifier: ImageCellCollectionViewCell.id, cellType: ImageCellCollectionViewCell.self)){(index , element , cell) in
+
+                cell.uiSetting(fileURL: element)
             }
             .disposed(by: disposeBag)
         
@@ -376,6 +387,16 @@ class ProfileViewController: SuperViewControllerSetting {
                 self?.openPopUp(type: .bodyTypes, data: self?.viewModel?.output.metaData.value?.bodyTypes ?? [])
             }).disposed(by: disposeBag)
         
+        heightStack.rx.tapGesture(configuration: .none)
+            .when(.recognized)
+            .asDriver { _ in .never() }
+            .drive(onNext: { [weak self] _ in
+                guard let viewModel = self?.viewModel else { return }
+                
+                self?.openHeightPopUp(type: .heightRange, data: (viewModel.output.metaData.value?.heightRange?.min ?? 0)...(viewModel.output.metaData.value?.heightRange?.max ?? 0))
+            }).disposed(by: disposeBag)
+        
+        
         educationStack.rx.tapGesture(configuration: .none)
             .when(.recognized)
             .asDriver { _ in .never() }
@@ -415,22 +436,67 @@ class ProfileViewController: SuperViewControllerSetting {
     
     func dommyStringAdd(items : [String]) -> [String]{
         var strings = items
-        for _ in items.count..<6 {
-            strings.append("")
+        if items.count > 6{
+            strings = strings.dropLast(6)
+        }else{
+            for _ in items.count..<6 {
+                strings.append("")
+            }
         }
+        
+      
         return strings
     }
- 
+    
     func openPopUp(type : MetaDataType , data : [MetaValue]){
+        if let openPopUpView = openPopUpView {
+            openPopUpView.removeFromSuperview()
+        }
+        
+        
         let popup = PopUpView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-       
         popup.titleLabel.text = type.rawValue
-        openPopUp = popup
+        openPopUpView = popup
         for item in data {
             let contentLabel = TypeLabel(type: type, name: item.name)
             contentLabel.delegate = self
-            
             popup.contentStackView.addArrangedSubview(contentLabel)
+            contentLabel.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(16)
+                make.trailing.equalToSuperview().offset(-16)
+            }
+            if(type == .bodyTypes && item.name == viewModel?.output.userProfile.value.bodyType?.rawValue){
+                contentLabel.textColor = .glamBlue
+            }else if(type == .educations && item.name == viewModel?.output.userProfile.value.education?.rawValue){
+                contentLabel.textColor = .glamBlue
+            }
+        }
+        
+        view.addSubview(popup)
+    }
+    
+    func openHeightPopUp(type : MetaDataType , data : ClosedRange<Int>){
+        if let openPopUpView = openPopUpView {
+            openPopUpView.removeFromSuperview()
+        }
+        
+        let popup = PopUpView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        popup.titleLabel.text = type.rawValue
+        openPopUpView = popup
+        for item in data {
+            let contentLabel = TypeLabel(type: type, name: String(item))
+            contentLabel.delegate = self
+            popup.contentStackView.addArrangedSubview(contentLabel)
+            
+            if(item == viewModel?.output.userProfile.value.height){
+                contentLabel.textColor = .glamBlue
+                print(contentLabel.bounds)
+                
+                //OR
+                //let bottomOffset = CGPoint(x: 0, y: scrollView.frame.maxY)
+                popup.contentScrollView.setContentOffset(CGPoint(x: 0, y: -3000), animated: true)
+            }
+            
             contentLabel.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(16)
                 make.trailing.equalToSuperview().offset(-16)
@@ -439,9 +505,12 @@ class ProfileViewController: SuperViewControllerSetting {
         view.addSubview(popup)
     }
     
+    
+    
+    
 }
 
-extension ProfileViewController {
+extension ProfileViewController : ScrollKeyboardProtocl{
     func notificationCenterRegister(){
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -450,12 +519,11 @@ extension ProfileViewController {
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillShowNotification)
         NotificationCenter.default.removeObserver(UIResponder.keyboardWillHideNotification)
     }
+    
     @objc func keyboardWillShow(_ notification : NSNotification){
-
         guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-            
         mainScrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height
-
+        
     }
     @objc func keyboardWillHide(_ notification: NSNotification){
         mainScrollView.contentInset.bottom = 0
@@ -465,7 +533,7 @@ extension ProfileViewController {
 extension ProfileViewController : TypeLabelDelegate {
     
     func typeChange(type : MetaDataType , name : String) {
-        openPopUp?.removeFromSuperview()
+        openPopUpView?.removeFromSuperview()
         viewModel?.input.changeValue.onNext((type , name))
     }
     

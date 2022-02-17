@@ -44,7 +44,7 @@ struct ProfileSubData: Codable {
         case educations
         case bodyTypes = "body_types"
         case genders
-        case heightRange = "height_Range"
+        case heightRange = "height_range"
        
     }
     

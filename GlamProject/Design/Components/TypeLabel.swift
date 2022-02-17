@@ -54,4 +54,7 @@ class TypeLabel: UILabel {
             })
             .disposed(by: disposeBag)
     }
+    
+   
+    
 }

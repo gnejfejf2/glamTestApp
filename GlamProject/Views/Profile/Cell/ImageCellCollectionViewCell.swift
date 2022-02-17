@@ -19,10 +19,12 @@ class ImageCellCollectionViewCell : CellSuperClass {
         $0.contentMode = .scaleToFill
     }
     
-    func uiSetting(fileURL : String? = nil){
-        if let fileURL = fileURL {
+    func uiSetting(fileURL : String = ""){
+        if fileURL != "" {
             mainImage.kf.setImage(with : fileURL.getImageURL())
         }
+        
+       
     }
     
     override func addSubviews() {

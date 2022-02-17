@@ -8,8 +8,12 @@ import RxRelay
 import RxGesture
 
 
+protocol HomeViewProrocol {
+    func getPageViewControllers() -> [UIViewController]
+}
 
-class HomeViewController: SuperViewControllerSetting {
+
+class HomeViewController: SuperViewControllerSetting , HomeViewProrocol {
     
     
     
@@ -44,7 +48,7 @@ class HomeViewController: SuperViewControllerSetting {
         }
     }
     
-   
+    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationBarSetting(hidden: true)
@@ -57,7 +61,7 @@ class HomeViewController: SuperViewControllerSetting {
         view.addSubview(settingButton)
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
-     
+        
     }
     
     override func uiSetting() {
@@ -93,10 +97,10 @@ class HomeViewController: SuperViewControllerSetting {
         }
         
         
-       
+        
     }
     
- 
+    
     
     
     override func eventBinding() {
@@ -110,10 +114,7 @@ class HomeViewController: SuperViewControllerSetting {
     }
     
     
-    func pageViewControllerSetting(){
-        dataSourceVC = getPageViewControllers()
-        currentPage = 0
-    }
+   
     
     func getPageViewControllers() -> [UIViewController]{
         var views : [UIViewController] = []
@@ -128,9 +129,9 @@ class HomeViewController: SuperViewControllerSetting {
                 let red = CGFloat(arc4random_uniform(256)) / 255
                 let green = CGFloat(arc4random_uniform(256)) / 255
                 let blue = CGFloat(arc4random_uniform(256)) / 255
-
+                
                 vc.view.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
-
+                
                 let label = UILabel()
                 label.text = "123123"
                 label.font = .systemFont(ofSize: 56, weight: .bold)
@@ -144,8 +145,17 @@ class HomeViewController: SuperViewControllerSetting {
             
         }
         return views
-   }
+    }
     
+    
+    
+}
+
+extension HomeViewController {
+    private func pageViewControllerSetting(){
+        dataSourceVC = getPageViewControllers()
+        currentPage = 0
+    }
     
     private func bind(oldValue: Int, newValue: Int) {
         // collectionView 에서 선택한 경우
@@ -155,11 +165,10 @@ class HomeViewController: SuperViewControllerSetting {
         collectionView.selectItem(at: IndexPath(item: currentPage, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
     
-    func didTapCell(at indexPath: IndexPath) {
+    private func didTapCell(at indexPath: IndexPath) {
         currentPage = indexPath.item
     }
 }
-
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

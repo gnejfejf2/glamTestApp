@@ -9,13 +9,14 @@ import Moya
 
 class HomeViewTests: XCTestCase {
     let disposeBag = DisposeBag()
-
+    var viewController : HomeViewController!
     var viewModel: HomeViewModel!
     var scheduler: TestScheduler!
     
     // MARK: - GIVEN
     override func setUp() {
         let mockNetworkingAPI =  NetworkingAPI(provider: MoyaProvider<GlamAPI>(stubClosure: { _ in .immediate }))
+        viewController = HomeViewController()
         viewModel = HomeViewModel(networkAPI: mockNetworkingAPI)
         scheduler = TestScheduler(initialClock: 0, resolution: 0.01)
         
@@ -49,7 +50,7 @@ class HomeViewTests: XCTestCase {
         
         
         scheduler.start()
-       
+        
         let exceptEvents: [Recorded<Event<MainIntroductionType?>>] = [
             .next(0, .Customize),
             .completed(0)
@@ -59,7 +60,7 @@ class HomeViewTests: XCTestCase {
     }
     
     
-   
+    
     
     //처음 뷰모델을 선언할때
     //최초값을 가져왓고 다음페이지는 없으므로 NIL이 찍히는게 맞다
@@ -67,7 +68,7 @@ class HomeViewTests: XCTestCase {
         let observer = scheduler.createObserver(NextModel?.self)
         
         let _ = viewModel.addPickIntroductionGet()
-           
+        
         viewModel.output.nextPage
             .map({ $0 })
             .bind(to: observer)
@@ -75,7 +76,7 @@ class HomeViewTests: XCTestCase {
         
         
         scheduler.start()
-       
+        
         let exceptEvents: [Recorded<Event<NextModel?>>] = [
             .next(0, nil)
         ]
@@ -86,18 +87,18 @@ class HomeViewTests: XCTestCase {
     //삭제테스트
     func testRemoveIntroductionGet() {
         let observer = scheduler.createObserver(Int?.self)
-       
+        
         let itemCount = viewModel.output.mainIntroductionModels.value.count
         
         scheduler.createHotObservable([ .next(100 , MainIntroductionModel(cellType: .TodayPick, data: Introduction(id: 1, age: 0, name: "", company: "", distance: 0, height: 0, introduction: "", job: "", location: "", pictures: [])) )])
             .bind(to: viewModel.input.removeAction)
             .disposed(by: disposeBag)
-      
+        
         
         scheduler.createHotObservable([ .next(200 , MainIntroductionModel(cellType: .TodayPick, data: Introduction(id: 4, age: 0, name: "", company: "", distance: 0, height: 0, introduction: "", job: "", location: "", pictures: [])) )])
             .bind(to: viewModel.input.removeAction)
             .disposed(by: disposeBag)
-       
+        
         viewModel.output.mainIntroductionModels
             .map({ $0.count })
             .bind(to: observer)
@@ -105,7 +106,7 @@ class HomeViewTests: XCTestCase {
         
         
         scheduler.start()
-       
+        
         
         
         
@@ -126,14 +127,14 @@ class HomeViewTests: XCTestCase {
     func testFirtIntroducationGetChecking(){
         let observer = scheduler.createObserver(Int?.self)
         
-//
+        //
         viewModel.output.mainIntroductionModels
             .map({ $0.count })
             .bind(to: observer)
             .disposed(by: disposeBag)
-
+        
         scheduler.start()
-
+        
         let exceptEvents: [Recorded<Event<Int?>>] = [
             .next(0, 5)
         ]
@@ -169,7 +170,7 @@ class HomeViewTests: XCTestCase {
             .disposed(by: disposeBag)
         
         scheduler.start()
-       
+        
         let exceptEvents: [Recorded<Event<MainIntroductionType?>>] = [
             .next(0, .AddPick),
             .completed(0)
@@ -178,5 +179,12 @@ class HomeViewTests: XCTestCase {
         XCTAssertEqual(observer.events , exceptEvents)
     }
     
+    func testHomeGetPageViewControllers(){
+        let count = viewController.getPageViewControllers().count
+        
+        
+        XCTAssertEqual(count, 3)
+        
+    }
     
 }
