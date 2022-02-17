@@ -80,6 +80,7 @@
 		E0490D8127BE286B005F6672 /* TalkViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0490D6A27BE286B005F6672 /* TalkViewCoordinator.swift */; };
 		E0490D8227BE286B005F6672 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0490D6B27BE286B005F6672 /* TalkViewController.swift */; };
 		E0F5ADD827BE7043004FF1ED /* ScrollKeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5ADD727BE7043004FF1ED /* ScrollKeyboardProtocol.swift */; };
+		E0F5ADDA27BE84F1004FF1ED /* Array_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5ADD927BE84F1004FF1ED /* Array_Extension.swift */; };
 		F20F1D17406B45C7F311A74B /* Pods_GlamProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15916F0512718EE6EC40C28 /* Pods_GlamProjectTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +175,7 @@
 		E0490D6A27BE286B005F6672 /* TalkViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkViewCoordinator.swift; sourceTree = "<group>"; };
 		E0490D6B27BE286B005F6672 /* TalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		E0F5ADD727BE7043004FF1ED /* ScrollKeyboardProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollKeyboardProtocol.swift; sourceTree = "<group>"; };
+		E0F5ADD927BE84F1004FF1ED /* Array_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array_Extension.swift; sourceTree = "<group>"; };
 		F15916F0512718EE6EC40C28 /* Pods_GlamProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlamProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -319,6 +321,7 @@
 				E0490D0427BE27F4005F6672 /* Int_Extension.swift */,
 				E0490D0527BE27F4005F6672 /* UIViewController_Extension.swift */,
 				E0490D0627BE27F4005F6672 /* UIView_Extension.swift */,
+				E0F5ADD927BE84F1004FF1ED /* Array_Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				E0490CF627BE27D5005F6672 /* DoneTextField.swift in Sources */,
 				E0F5ADD827BE7043004FF1ED /* ScrollKeyboardProtocol.swift in Sources */,
 				E0490D7927BE286B005F6672 /* ProfileViewModel.swift in Sources */,
+				E0F5ADDA27BE84F1004FF1ED /* Array_Extension.swift in Sources */,
 				E0490D7F27BE286B005F6672 /* PlayViewModel.swift in Sources */,
 				E0490D7A27BE286B005F6672 /* MyViewModel.swift in Sources */,
 				E0490D2127BE27F4005F6672 /* TabViewCoordinator.swift in Sources */,

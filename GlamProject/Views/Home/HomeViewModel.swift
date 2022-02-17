@@ -3,7 +3,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxRelay
-import RxDataSources
 import Moya
 
 protocol HomeViewModelProtocol {
@@ -57,7 +56,7 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
         input.removeAction
             .map { [weak self] removedItem in
                 guard let self = self else { return [] }
-                return self.output.mainIntroductionModels.value.filter { $0.data?.id != removedItem.data?.id }
+                return self.output.mainIntroductionModels.value.filter { $0.data.id != removedItem.data.id }
             }
             .bind(to: output.mainIntroductionModels)
             .disposed(by: disposeBag)
@@ -68,7 +67,7 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
             .flatMapLatest { [self] in
                 self.addPickIntroductionGet()
             }
-            .map { self.output.mainIntroductionModels.value + $0 }
+            .withLatestFrom(output.mainIntroductionModels) { $1 + $0 }
             .bind(to: output.mainIntroductionModels)
             .disposed(by: disposeBag)
         
@@ -77,7 +76,8 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
             .flatMapLatest { [self] in
                 self.customPickIntroductionGet()
             }
-            .map { $0 + self.output.mainIntroductionModels.value  }
+            .withLatestFrom(output.mainIntroductionModels) { $0 + $1 }
+            .map{ $0.removingDuplicates() }
             .bind(to: output.mainIntroductionModels)
             .disposed(by: disposeBag)
         
@@ -124,7 +124,7 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
     }
 
     func customPickCellAdd() -> Observable<[MainIntroductionModel]>{
-        Single<[MainIntroductionModel]>.just([MainIntroductionModel(cellType: .Customize , data: nil)])
+        Single<[MainIntroductionModel]>.just([MainIntroductionModel(cellType: .Customize , data: Introduction(id:UUID().uuidString.hashValue, age: 0, name: "", company: nil, distance: nil, height: nil, introduction: nil, job: nil, location: nil, pictures: nil))])
             .asObservable()
     }
     

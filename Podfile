@@ -10,7 +10,7 @@ target 'GlamProject' do
   # Rx
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'RxDataSources'
+ 
   pod 'RxGesture'
   
   # Networking

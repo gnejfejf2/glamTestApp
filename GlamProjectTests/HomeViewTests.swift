@@ -41,22 +41,24 @@ class HomeViewTests: XCTestCase {
     }
     
     func testCustomPickIntroductionGet(){
-        let observer = scheduler.createObserver(MainIntroductionType?.self)
-        
+        let observer1 = scheduler.createObserver(MainIntroductionType?.self)
         viewModel.customPickCellAdd()
             .map({ $0.first?.cellType })
-            .bind(to: observer)
+            .bind(to: observer1)
             .disposed(by: disposeBag)
         
         
         scheduler.start()
         
-        let exceptEvents: [Recorded<Event<MainIntroductionType?>>] = [
+        let exceptEvents1: [Recorded<Event<MainIntroductionType?>>] = [
             .next(0, .Customize),
             .completed(0)
         ]
         
-        XCTAssertEqual(observer.events , exceptEvents)
+        XCTAssertEqual(observer1.events , exceptEvents1)
+        
+        
+        
     }
     
     
@@ -66,6 +68,7 @@ class HomeViewTests: XCTestCase {
     //최초값을 가져왓고 다음페이지는 없으므로 NIL이 찍히는게 맞다
     func testAddPickMetaDataIntroductionGet() {
         let observer = scheduler.createObserver(NextModel?.self)
+        
         
         let _ = viewModel.addPickIntroductionGet()
         
@@ -82,7 +85,72 @@ class HomeViewTests: XCTestCase {
         ]
         
         XCTAssertEqual(observer.events , exceptEvents)
+        
     }
+    
+    func testAddModelAfter(){
+        let observer2 = scheduler.createObserver([Int].self)
+        
+        scheduler.createHotObservable([.next(100 , () )])
+            .bind(to: viewModel.input.readAdd)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([.next(200 , () )])
+            .bind(to: viewModel.input.readAdd)
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.output.mainIntroductionModels
+            .map({
+                $0.filter{ $0.cellType != .Customize }
+                .map { $0.data.id }
+            })
+            .bind(to: observer2)
+            .disposed(by: disposeBag)
+        
+        
+        scheduler.start()
+        
+        let exceptEvents2: [Recorded<Event<[Int]>>] = [
+            .next(0, [1,2,3,4]),
+            .next(100, [1,2,3,4,5,6]),
+        ]
+        
+        XCTAssertEqual(observer2.events , exceptEvents2)
+    }
+    
+    func testCustomAddModelAfter(){
+        let observer2 = scheduler.createObserver([Int].self)
+        
+        scheduler.createHotObservable([.next(100 , () )])
+            .bind(to: viewModel.input.customAdd)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([.next(200 , () )])
+            .bind(to: viewModel.input.customAdd)
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.output.mainIntroductionModels
+            .map({
+                $0.filter{ $0.cellType != .Customize }
+                .map { $0.data.id }
+            })
+            .bind(to: observer2)
+            .disposed(by: disposeBag)
+        
+        
+        scheduler.start()
+        
+        let exceptEvents2: [Recorded<Event<[Int]>>] = [
+            .next(0, [1,2,3,4]),
+            .next(100, [7,8,1,2,3,4]),
+            .next(200, [7,8,1,2,3,4])
+        ]
+        
+        XCTAssertEqual(observer2.events , exceptEvents2)
+    }
+    
     
     //삭제테스트
     func testRemoveIntroductionGet() {
