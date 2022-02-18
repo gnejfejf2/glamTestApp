@@ -486,6 +486,7 @@ class ProfileViewController: SuperViewControllerSetting , ProfileViewProtocol{
         let popup = PopUpView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         popup.titleLabel.text = type.rawValue
         openPopUpView = popup
+        
         for item in data {
             let contentLabel = TypeLabel(type: type, name: String(item))
             contentLabel.delegate = self

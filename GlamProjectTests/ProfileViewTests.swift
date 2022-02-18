@@ -89,6 +89,9 @@ class ProfileViewTests: XCTestCase {
             .bind(to: viewModel.input.changeValue)
             .disposed(by: disposeBag)
         
+        scheduler.createHotObservable([.next(700 , (.heightRange , "180"))])
+            .bind(to: viewModel.input.changeValue)
+            .disposed(by: disposeBag)
         
         //
         viewModel.output.userProfile
@@ -109,8 +112,8 @@ class ProfileViewTests: XCTestCase {
             .next(300, Profile(bodyType: .body_type_03, birthday: "1990-01-01", company: "큐피스트", education: .education_00, gender: .F, height: 170, id: 0, introduction: "소개글", job: "개발자", location: "서울특별시 강남구", name: "개발자 A", pictures: [ "/profile/01.png","/profile/02.png"], school: nil)),
             .next(400, Profile(bodyType: .body_type_03, birthday: "1990-01-01", company: "", education: .education_00, gender: .F, height: 170, id: 0, introduction: "소개글", job: "개발자", location: "서울특별시 강남구", name: "개발자 A", pictures: [ "/profile/01.png","/profile/02.png"], school: nil)),
             .next(500, Profile(bodyType: .body_type_03, birthday: "1990-01-01", company: "", education: .education_00, gender: .F, height: 170, id: 0, introduction: "소개글", job: "", location: "서울특별시 강남구", name: "개발자 A", pictures: [ "/profile/01.png","/profile/02.png"], school: nil)),
-            .next(600, Profile(bodyType: .body_type_03, birthday: "1990-01-01", company: "", education: .education_00, gender: .F, height: 170, id: 0, introduction: "소개글", job: "", location: "서울특별시 강남구", name: "개발자 A", pictures: [ "/profile/01.png","/profile/02.png"], school: "수성고등학교"))
-            
+            .next(600, Profile(bodyType: .body_type_03, birthday: "1990-01-01", company: "", education: .education_00, gender: .F, height: 170, id: 0, introduction: "소개글", job: "", location: "서울특별시 강남구", name: "개발자 A", pictures: [ "/profile/01.png","/profile/02.png"], school: "수성고등학교")),
+            .next(700, Profile(bodyType: .body_type_03, birthday: "1990-01-01", company: "", education: .education_00, gender: .F, height: 180, id: 0, introduction: "소개글", job: "", location: "서울특별시 강남구", name: "개발자 A", pictures: [ "/profile/01.png","/profile/02.png"], school: "수성고등학교"))
         ]
         
         
