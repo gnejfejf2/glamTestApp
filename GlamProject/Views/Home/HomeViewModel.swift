@@ -5,26 +5,37 @@ import RxCocoa
 import RxRelay
 import Moya
 
+
+
+
 protocol HomeViewModelProtocol {
     
-    var coordinator : HomeViewCoordinator? { get }
+    associatedtype Input
+    
+    associatedtype Output
+    
+    
+    var input : Input { get }
+    
+    var output : Output { get }
+
+    var networkAPI : NetworkingAPI { get }
+    
+    var coordinator : HomeViewCoordinator? { get set }
+    
+    var disposeBag : DisposeBag { get }
+    
+    
     func getIntroduction()
     func todayPickIntroductionGet() -> Observable<[MainIntroductionModel]>
     func customPickCellAdd() -> Observable<[MainIntroductionModel]>
     func addPickIntroductionGet() -> Observable<[MainIntroductionModel]>
     func customPickIntroductionGet() -> Observable<[MainIntroductionModel]>
     func makeMainIntroductionModel(items : [Introduction] , cellType : MainIntroductionType ) -> [MainIntroductionModel]
+    
 }
 
 class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
-    
-    
-    
-    
-    let networkAPI : NetworkingAPI
-    var coordinator : HomeViewCoordinator?
-    
-    
     
     struct Input {
         let customAdd = PublishSubject<Void>()
@@ -38,9 +49,17 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
         let nextPage = BehaviorRelay<NextModel?>(value: nil)
     }
     
+    
+    
+    
+    
+    
+
     let input = Input()
     let output = Output()
-    private let disposeBag = DisposeBag()
+    var networkAPI : NetworkingAPI
+    var coordinator : HomeViewCoordinator?
+    let disposeBag = DisposeBag()
     
     
     init(networkAPI : NetworkingAPI = NetworkingAPI.shared){
@@ -108,27 +127,6 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
         
     }
     
-    
-    func todayPickIntroductionGet() -> Observable<[MainIntroductionModel]>{
-        networkAPI.request(type : IntroductionResModel.self , .introduction)
-            .asObservable()
-            .map{ $0.data }
-            .map({ [weak self] data -> [MainIntroductionModel] in
-                guard let self = self else { return [] }
-                return self.makeMainIntroductionModel(items: data , cellType : .TodayPick)
-            })
-            .catch { error  in
-                return Observable<[MainIntroductionModel]>.just([])
-            }
-        
-    }
-
-    func customPickCellAdd() -> Observable<[MainIntroductionModel]>{
-        Single<[MainIntroductionModel]>.just([MainIntroductionModel(cellType: .Customize , data: Introduction(id:UUID().uuidString.hashValue, age: 0, name: "", company: nil, distance: nil, height: nil, introduction: nil, job: nil, location: nil, pictures: nil))])
-            .asObservable()
-    }
-    
-    
     func addPickIntroductionGet() -> Observable<[MainIntroductionModel]>{
         var result : Single<IntroductionAddResModel>
         
@@ -161,12 +159,39 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
             }
     }
     
+    
+}
+
+
+extension HomeViewModelProtocol {
+    
+    
+    
+    func todayPickIntroductionGet() -> Observable<[MainIntroductionModel]>{
+        networkAPI.request(type : IntroductionResModel.self , .introduction)
+            .asObservable()
+            .map{ $0.data }
+            .map({ data -> [MainIntroductionModel] in
+             
+                return makeMainIntroductionModel(items: data , cellType : .TodayPick)
+            })
+            .catch { error  in
+                return Observable<[MainIntroductionModel]>.just([])
+            }
+        
+    }
+
+    func customPickCellAdd() -> Observable<[MainIntroductionModel]>{
+        Single<[MainIntroductionModel]>.just([MainIntroductionModel(cellType: .Customize , data: Introduction(id:UUID().uuidString.hashValue, age: 0, name: "", company: nil, distance: nil, height: nil, introduction: nil, job: nil, location: nil, pictures: nil))])
+            .asObservable()
+    }
+    
     func customPickIntroductionGet() -> Observable<[MainIntroductionModel]>{
         networkAPI.request(type : IntroductionResModel.self , .introductionCustom)
             .asObservable()
             .map{ $0.data }
-            .map({ [weak self] data -> [MainIntroductionModel] in
-                guard let self = self else { return [] }
+            .map({ data -> [MainIntroductionModel] in
+               
                 return self.makeMainIntroductionModel(items: data , cellType : .AddPick)
             })
             .catch { error  in
@@ -182,8 +207,4 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
         }
         return mainIntroductionModels
     }
-    
-    
 }
-
-

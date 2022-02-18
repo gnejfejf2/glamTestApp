@@ -5,12 +5,16 @@ import RxRelay
 import Moya
 
 protocol ProfileViewModelProtocol {
+    var networkAPI : NetworkingAPI { get }
+    
     var coordinator : ProfileViewCoordinator? { get }
+    
     func userProfileGet() -> ( Observable<Profile> , Observable<ProfileSubData> )
 }
 
 
 class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
+  
     var networkAPI : NetworkingAPI
     
     var coordinator : ProfileViewCoordinator?
@@ -39,15 +43,13 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
         inputBinding()
         outputBinding()
         
-        print(output.userProfile.value)
-        
+      
     }
     
     
     func inputBinding() {
         input.changeValue
             .withLatestFrom(output.userProfile) {
-                
                 var profile = $1
                 switch $0.0 {
                 case .bodyTypes :
@@ -66,8 +68,6 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
                     profile.introduction = $0.1
                 }
                 return profile
-                
-                
             }
             .bind(to: output.userProfile)
             .disposed(by: disposeBag)
@@ -86,6 +86,11 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
     }
     
     
+   
+    
+    
+}
+extension ProfileViewModelProtocol {
     
     
     func userProfileGet() -> ( Observable<Profile> , Observable<ProfileSubData> ){
@@ -106,6 +111,4 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
      
         return  (Profile , Meta)
     }
-    
-    
 }
