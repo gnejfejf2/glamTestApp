@@ -1,13 +1,8 @@
-//
-//  ViewSettingProtocol.swift
-//  GramTestApp
-//
-//  Created by Hwik on 2022/02/14.
-//
-
 import Foundation
 import UIKit
 import RxSwift
+
+
 //뷰상단에 변수를 선언할때 or UI를 선언할때
 //순서
 // UI -> DataSource -> 변수 -> 기타값

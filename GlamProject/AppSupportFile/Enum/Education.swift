@@ -1,11 +1,3 @@
-//
-//  Education.swift
-//  GlamTestApp
-//
-//  Created by Hwik on 2022/02/17.
-//
-
-import Foundation
 import UIKit
 
 enum Education : String {

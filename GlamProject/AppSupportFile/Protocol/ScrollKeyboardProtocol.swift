@@ -1,10 +1,3 @@
-//
-//  ScrollKeyboardProtocol.swift
-//  GlamProject
-//
-//  Created by Hwik on 2022/02/17.
-//
-
 import Foundation
 
 protocol ScrollKeyboardProtocl {

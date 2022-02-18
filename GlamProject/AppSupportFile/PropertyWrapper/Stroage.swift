@@ -1,9 +1,3 @@
-//
-//  Stroage.swift
-//  GlamTestApp
-//
-//  Created by Hwik on 2022/02/17.
-//
 
 import Foundation
 
@@ -62,9 +56,9 @@ extension UserDefaults: ObjectSavable {
 }
 
 enum ObjectSavableError: String, LocalizedError {
-    case unableToEncode = "Unable to encode object into data"
-    case noValue = "No data object found for the given key"
-    case unableToDecode = "Unable to decode object into given type"
+    case unableToEncode = "인코딩실패"
+    case noValue = "해당값이없음"
+    case unableToDecode = "디코딩실패"
     
     var errorDescription: String? {
         rawValue

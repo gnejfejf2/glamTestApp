@@ -1,7 +1,7 @@
 import UIKit
 
 protocol HomeTabCoordinatorProtocol {
-//    func simpleViewOpen()
+
 }
 
 class HomeViewCoordinator : TabViewCoordinator , HomeTabCoordinatorProtocol {
@@ -33,7 +33,7 @@ class HomeViewCoordinator : TabViewCoordinator , HomeTabCoordinatorProtocol {
     }
  
     
-    func dommyViewOpen(){
+    func profileViewOpen(){
         let coordinator = ProfileViewCoordinator()
         coordinator.tabBarCoordinator = self
         coordinator.start()

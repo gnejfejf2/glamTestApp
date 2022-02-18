@@ -84,7 +84,7 @@ class HomeViewModel : ViewModelProtocol , HomeViewModelProtocol{
         
         input.moveSettingView
             .subscribe { [weak self] _ in
-                self?.coordinator?.dommyViewOpen()
+                self?.coordinator?.profileViewOpen()
             }.disposed(by: disposeBag)
         
     }

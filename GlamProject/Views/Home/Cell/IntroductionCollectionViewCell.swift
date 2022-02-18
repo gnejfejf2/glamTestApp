@@ -162,9 +162,7 @@ class IntroductionCollectionViewCell : CellSuperClass {
     override func addSubviews() {
         contentView.addSubview(mainImageView)
         contentView.addSubview(informationStackView)
-//        contentview.addSubview(mainImageView)
-//        addSubview(informationStackView)
-        
+    
     }
     
     override func configure() {

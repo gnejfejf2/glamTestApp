@@ -1,10 +1,3 @@
-//
-//  CustomPickStackView.swift
-//  GlamTestApp
-//
-//  Created by Hwik on 2022/02/15.
-//
-
 import UIKit
 import Then
 import SnapKit
