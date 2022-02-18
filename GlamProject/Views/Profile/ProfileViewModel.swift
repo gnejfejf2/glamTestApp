@@ -5,9 +5,20 @@ import RxRelay
 import Moya
 
 protocol ProfileViewModelProtocol {
+    associatedtype Input
+    
+    associatedtype Output
+    
     var networkAPI : NetworkingAPI { get }
     
     var coordinator : ProfileViewCoordinator? { get }
+    
+    var userManager : UserDefaultsManager { get }
+    
+    var input : Input { get }
+    var output : Output { get }
+    
+    var disposeBag : DisposeBag { get }
     
     func userProfileGet() -> ( Observable<Profile> , Observable<ProfileSubData> )
 }
@@ -15,13 +26,6 @@ protocol ProfileViewModelProtocol {
 
 class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
   
-    var networkAPI : NetworkingAPI
-    
-    var coordinator : ProfileViewCoordinator?
-    
-    let userManager : UserDefaultsManager = UserDefaultsManager.shared
-    
-    
     struct Input {
         let changeValue = PublishSubject<(MetaDataType , String)>()
     }
@@ -29,13 +33,19 @@ class ProfileViewModel : ViewModelProtocol , ProfileViewModelProtocol{
     struct Output {
         let userProfile = BehaviorRelay<Profile>(value : Profile(gender: .F))
         var metaData = BehaviorRelay<ProfileSubData?>(value : nil)
-      
     }
+    
+    
+    let networkAPI : NetworkingAPI
+    
+    var coordinator : ProfileViewCoordinator?
+    
+    let userManager : UserDefaultsManager = UserDefaultsManager.shared
     
     
     let input = Input()
     let output = Output()
-    private let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     
     init(networkAPI : NetworkingAPI = NetworkingAPI.shared){
         self.networkAPI = networkAPI

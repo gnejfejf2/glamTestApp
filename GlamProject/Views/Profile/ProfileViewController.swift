@@ -509,10 +509,8 @@ class ProfileViewController: SuperViewControllerSetting , ProfileViewProtocol{
         view.addSubview(popup)
     }
     
-    
-    
-    
 }
+
 
 extension ProfileViewController : ScrollKeyboardProtocl{
     func notificationCenterRegister(){

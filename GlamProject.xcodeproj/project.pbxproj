@@ -176,6 +176,7 @@
 		E0490D6B27BE286B005F6672 /* TalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		E0F5ADD727BE7043004FF1ED /* ScrollKeyboardProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollKeyboardProtocol.swift; sourceTree = "<group>"; };
 		E0F5ADD927BE84F1004FF1ED /* Array_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array_Extension.swift; sourceTree = "<group>"; };
+		E0F5ADDB27BF7A6F004FF1ED /* ScrollKeyboardProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollKeyboardProtocol.h; sourceTree = "<group>"; };
 		F15916F0512718EE6EC40C28 /* Pods_GlamProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlamProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -349,6 +350,7 @@
 				E0490D1327BE27F4005F6672 /* ViewSettingProtocol.swift */,
 				E0490D1427BE27F4005F6672 /* CellSettingProtocol.swift */,
 				E0F5ADD727BE7043004FF1ED /* ScrollKeyboardProtocol.swift */,
+				E0F5ADDB27BF7A6F004FF1ED /* ScrollKeyboardProtocol.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
