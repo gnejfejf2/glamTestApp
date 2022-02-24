@@ -45,3 +45,26 @@ UI
    ProfileViewController에 사용되는 함수들도 POP로 충분히 변경이 가능할 것 같다.
    하지만 popupview 의 아이템을 뛰우는 함수들이 너무 의존성이 높아 쉽게 분리하지 못하였고 개발끝나고
    결과물을 봤을때도 상당히 맘에 안들어 다른 구조를 고민하고있었는데 또 다시 발목을 잡았다.
+
+리뷰어 피드백
+
+- 코드 작성이 일관적이지 않아 전반적으로 읽는데 어려움이 있습니다.
+
+-> 잘 모르겠음
+
+- disposeBag을 사용중인 Cell에서 Cell 재사용시 disposeBag이 초기화 되지 않습니다.
+키워드: prepareForReuse()
+
+-> 해결 코드미반영
+
+- ViewController에서 ViewModel이 옵셔널인 점,
+Coordinator에서 ViewController 생성시 내부 viewModel 프로퍼티에 직접 할당이 아닌 생성시 주입하는 편이 좋았을 것 같습니다
+
+-> 해결 코드미반영
+
+- ViewModel input output 구조 관련
+input에서 외부에 공유될 프로퍼티는 AnyObserver 타입,
+output에서 외부에 공유될 프로퍼티는 Observable 혹은 Driver로 공유되어야 합니다.
+지금 구조에선 외부(ViewController)에서 viewModel 내 relay(혹은 subject)로 accept가 가능하여 안티패턴에 해당합니다.
+
+-> 해결 코드미반영
